@@ -21,23 +21,23 @@ $(".btn").click(function() {
   playSound(userChosenColour);
   animatePress(userChosenColour);
 
+  // Pass the index of the last clicked color to checkAnswer
   checkAnswer(userClickedPattern.length - 1);
 });
 
 function checkAnswer(currentLevel) {
-  // Check if the most recent user click matches the game sequence
+  // Check if the most recent user input matches the game pattern
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("success");
+    console.log("Success: User input matches at index " + currentLevel);
 
-    // If the user has finished their sequence
-    if (userClickedPattern.length === gamePattern.length){
+    // Check if the user has finished their sequence
+    if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
         nextSequence();
       }, 1000);
     }
-
   } else {
-    console.log("wrong");
+    console.log("Failure: User input does not match at index " + currentLevel);
 
     playSound("wrong");
     $("body").addClass("game-over");
