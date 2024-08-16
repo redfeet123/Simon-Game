@@ -32,6 +32,7 @@ function checkAnswer(currentLevel) {
 
     // Check if the user has finished their sequence
     if (userClickedPattern.length === gamePattern.length) {
+      // After the user has completed the pattern, generate the next sequence
       setTimeout(function () {
         nextSequence();
       }, 1000);
@@ -59,6 +60,7 @@ function nextSequence() {
   var randomChosenColour = buttonColours[randomNumber];
   gamePattern.push(randomChosenColour);
 
+  // Show the next color in the sequence
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour);
 }
