@@ -25,13 +25,20 @@ $(".btn").click(function() {
 });
 
 function checkAnswer(currentLevel) {
+  // Check if the most recent user click matches the game sequence
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    if (userClickedPattern.length === gamePattern.length) {
+    console.log("success");
+
+    // If the user has finished their sequence
+    if (userClickedPattern.length === gamePattern.length){
       setTimeout(function () {
         nextSequence();
       }, 1000);
     }
+
   } else {
+    console.log("wrong");
+
     playSound("wrong");
     $("body").addClass("game-over");
     $("#level-title").text("Game Over, Press Any Key to Restart");
@@ -45,7 +52,7 @@ function checkAnswer(currentLevel) {
 }
 
 function nextSequence() {
-  userClickedPattern = [];
+  userClickedPattern = []; // Reset user pattern for the new level
   level++;
   $("#level-title").text("Level " + level);
   var randomNumber = Math.floor(Math.random() * 4);
